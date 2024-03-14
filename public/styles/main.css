@@ -1,0 +1,170 @@
+:root {
+    --primary: #FBFCFF;
+    --accent: #D9DCD6;
+    --secondary: #080705
+}
+
+.test-class {
+    outline: 1px solid red;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary);
+    font-family: "Nunito Sans", sans-serif;
+    color: var(--secondary);
+}
+
+.container {
+    padding: 5px 10px;
+}
+
+h1.page-title {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+.page-title a {
+    text-decoration: none;
+}
+
+input[type="search"],
+input[type="text"] {
+    padding: 10px 12px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border-color: #00000044;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 1);
+}
+
+.search-container {
+    margin-top: 20px;
+    display: flex;
+    padding-inline: 0.6rem;
+    justify-content: space-between;
+}
+
+.search-container::before {
+    content: "";
+    width: 165px;
+}
+
+.search {
+    display: inline-block;
+    width: min(80%, 700px);
+    position: relative;
+    scale: 0.95;
+    transition: 0.2s ease-in-out all;
+}
+
+.search:hover,
+.search:focus-within,
+.search:active {
+    scale: 1;
+}
+
+.search button {
+    background: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 11px
+}
+
+.search .search-input {
+    width: 100%;
+    padding-right: 50px;
+    position: relative;
+    font-size: 0.85rem;
+}
+
+.search-input:focus,
+.search-input:focus:active {
+    outline: none;
+}
+
+.add-book {
+    min-width: 170px;
+    padding: 9px 11px;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: var(--secondary);
+    opacity: 0.9;
+    font-size: 0.97rem;
+    font-weight: bold;
+    transition: 0.2s all ease-in-out;
+    scale: 0.95;
+    cursor: pointer;
+    display: block;
+}
+
+.add-book:hover {
+    background-color: var(--secondary);
+    scale: 1;
+    color: var(--primary);
+}
+
+.divider {
+    margin-block: 25px 35px;
+    padding-inline: 20px;
+    opacity: 0.8;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 16px;
+    row-gap: 18px;
+    width: min(80%, 1400px);
+}
+
+@media (max-width: 1400px) {
+    .books-container {
+        grid-template-columns: repeat(3, 1fr);
+        
+    }
+}
+@media (max-width: 1000px) {
+    .books-container {
+        grid-template-columns: repeat(2, 1fr);
+        
+    }
+}
+@media (max-width: 680px) {
+    .books-container {
+        grid-template-columns: repeat(1, 1fr);
+        padding-inline: 40px;
+        
+    }
+}
+
+.book {
+    height: 420px;  
+    /* aspect-ratio: 12 / 16; */
+}
+
+.book img {
+    width: 100%;
+}
+
+/* font-family: "Nunito Sans", sans-serif;
+font-optical-sizing: auto;
+font-weight: <weight>; */
