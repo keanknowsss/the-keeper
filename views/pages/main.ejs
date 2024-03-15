@@ -13,23 +13,66 @@
 			/>
 			<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 		</div>
-		<button type="button" class="add-book">Add New Book <i class="fa-solid fa-plus"></i></button>
+		<button
+			type="button"
+			class="add-book"
+		>
+			Add New Book <i class="fa-solid fa-plus"></i>
+		</button>
 	</form>
-	<hr class="divider">
+	<div class="divider-container">
+		<hr class="divider" />
+	</div>
 	<div class="content">
 		<div class="books-container">
-			<div class="book test-class">
-				<img src="./assets/placeholder.jpg" alt="book-sample" />
+			<div class="book">
+				<div class="img-container">
+					<img
+						src="./assets/placeholder.jpg"
+						alt="book-sample"
+					/>
+				</div>
+				<div class="book-card-content">
+					<div class="text-container">
+						<p class="title">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quisquam!
+						</p>
+						<p class="writer">Keanu</p>
+					</div>
+					<div class="stars-container">
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-solid fa-star"></i>
+						<i class="fa-regular fa-star"></i>
+					</div>
+				</div>
 			</div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
-			<div class="book test-class"></div>
+			<% for( let i = 0; i < 25; i++ ) { %>
+				<div class="book">
+					<div class="img-container">
+						<img
+							src="./assets/sample-book.jpg"
+							alt="book-sample"
+						/>
+					</div>
+					<div class="book-card-content">
+						<div class="text-container">
+							<p class="title">
+								Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quisquam!
+							</p>
+							<p class="writer">Keanu</p>
+						</div>
+						<div class="stars-container">
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-solid fa-star"></i>
+							<i class="fa-regular fa-star"></i>
+						</div>
+					</div>
+				</div>
+			<% } %>
 		</div>
 	</div>
-	
 </div>
