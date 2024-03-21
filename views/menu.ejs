@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+			integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com"
+		/>
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin
+		/>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Oswald:wght@600&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="/styles/main.css"
+		/>
+		<title>My Collections | The Keeper</title>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="page-title"><a href="#">The Keeper</a></h1>
+			<form
+				action="#"
+				method="get"
+				class="search-container"
+			>
+				<div class="search">
+					<input
+						type="search"
+						placeholder="Search your collections..."
+						class="search-input"
+					/>
+					<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+				</div>
+				<button
+					type="button"
+					class="add-book"
+				>
+					Add New Book <i class="fa-solid fa-plus"></i>
+				</button>
+			</form>
+			<div class="divider-container">
+				<hr class="divider" />
+			</div>
+			<div class="content">
+				<div class="books-container">
+					<div class="book">
+						<div class="img-container">
+							<img
+								src="./assets/placeholder.jpg"
+								alt="book-sample"
+							/>
+						</div>
+						<div class="book-card-content">
+							<div class="text-container">
+								<p class="title">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quisquam!
+								</p>
+								<p class="writer">Keanu</p>
+							</div>
+							<div class="stars-container">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-regular fa-star"></i>
+							</div>
+						</div>
+					</div>
+					<% for( let i = 0; i < 25; i++ ) { %>
+					<div class="book">
+						<div class="img-container">
+							<img
+								src="./assets/sample-book.jpg"
+								alt="book-sample"
+							/>
+						</div>
+						<div class="book-card-content">
+							<div class="text-container">
+								<p class="title">
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias, quisquam!
+								</p>
+								<p class="writer">Keanu</p>
+							</div>
+							<div class="stars-container">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-regular fa-star"></i>
+							</div>
+						</div>
+					</div>
+					<% } %>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
