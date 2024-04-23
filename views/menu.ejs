@@ -33,37 +33,69 @@
 		<title>My Collections | The Keeper</title>
 	</head>
 	<body>
+		<% if (locals.errors) { %>
+			<p><%= errors %></p>
+		<% } %>
 		<div class="container">
 			<h1 class="page-title"><a href="#">The Keeper</a></h1>
-			<form
-				action="#"
-				method="get"
-				class="search-container"
-			>
-				<div class="search">
-					<input
-						type="search"
-						placeholder="Search your collections..."
-						class="search-input"
-					/>
-					<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-				</div>
-				<button
-					type="button"
-					class="add-book"
+			<div class="btn-container">
+				<form
+					action="#"
+					method="get"
+					class="search-container"
 				>
-					Add New Book <i class="fa-solid fa-plus"></i>
-				</button>
-			</form>
+					<div class="search">
+						<input
+							type="search"
+							placeholder="Search your collections..."
+							class="search-input"
+						/>
+						<button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+					</div>
+				</form>
+
+				<form
+					action="/add/book"
+					method="get"
+				>
+					<button class="add-book">Add New Book <i class="fa-solid fa-plus"></i></button>
+				</form>
+			</div>
+
 			<div class="divider-container">
 				<hr class="divider" />
 			</div>
 			<div class="content">
 				<div class="books-container">
-					<div class="book">
+					<% if (books.length > 0) { %> <% books.forEach(book => { %>
+					<a class="book" href="/book/<%= book.id %>">
 						<div class="img-container">
 							<img
-								src="./assets/placeholder.jpg"
+								src="<%= book.cover %>"
+								alt="<%= book.title %>"
+							/>
+						</div>
+						<div class="book-card-content">
+							<div class="text-container">
+								<p class="title"><%= book.title %></p>
+								<p class="writer"><%= book.author %></p>
+							</div>
+							<div class="stars-container">
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-solid fa-star"></i>
+								<i class="fa-regular fa-star"></i>
+							</div>
+						</div>
+					</a>
+					<% }) %> <% } else { %>
+					<!-- Insert element if there are no books -->
+					<% } %>
+					<!-- <div class="book">
+						<div class="img-container">
+							<img
+								src="https://covers.openlibrary.org/b/isbn/0320037800-L.jpg"
 								alt="book-sample"
 							/>
 						</div>
@@ -107,7 +139,7 @@
 							</div>
 						</div>
 					</div>
-					<% } %>
+					<% } %> -->
 				</div>
 			</div>
 		</div>
