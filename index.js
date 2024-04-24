@@ -33,23 +33,45 @@ const db = new pg.Client({
 db.connect();
 
 // routes
+app.post("/add/notes/:book_id", async (req, res) => {
+	const { note } = req.body;
+	const { book_id } = req.params
+	const date = new Date();
+	const dateNow = date.toLocaleDateString();
+
+	try {
+		await db.query("INSERT INTO notes (book_id, note, date_created) VALUES ($1, $2, $3)", [
+			book_id, note, dateNow
+		]);
+	} catch (error) {
+		req.session.error = error;
+	}
+
+	return res.redirect("/book/" + book_id);	
+});
 
 app.get("/book/:id", async (req, res) => {
 	const id = req.params.id;
 
+	delete req.session.error; // deletes the session after loading it, so it shows this once
+
 	try {
-		const result = await db.query("SELECT * FROM books WHERE id = $1", [id]);	
-		const book = result.rows[0];
+		const book_query = await db.query("SELECT * FROM books WHERE id = $1", [id]);	
+		const book = book_query.rows[0];
+
+		const notes_query = await db.query("SELECT * FROM notes WHERE book_id = $1 ORDER BY id DESC", [id]);
+		const notes = notes_query.rows;
 
 		if (book)
-			return res.render("book.ejs", { book });
+			return res.render("book.ejs", { book, notes, errors: req.session.errors });
 		else {
 			req.session.error = "Book not found, try adding it first";
 			return res.redirect("/");
 		}
-			res.redirect()
+
 	} catch (error) {
 		req.session.error = error;
+		console.log(error);
 		res.redirect("/");
 	}
 });

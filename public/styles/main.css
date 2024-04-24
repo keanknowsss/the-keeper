@@ -62,7 +62,7 @@ textarea {
 }
 
 .btn-container .search-container {
-    width: min(80%, 700px);   
+    width: min(80%, 700px);
 }
 
 .search {
@@ -235,9 +235,9 @@ textarea {
     background-color: rgba(0, 0, 0, 0.7);
     padding-block: 15px 10px;
     width: 100%;
-    box-shadow: 0px -40px 30pt 0px rgba(0, 0, 0, 0.7);
-    -webkit-box-shadow: 0px -40px 30pt 0px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px -40px 30pt 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
+    -webkit-box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
+    -moz-box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
     color: var(--primary);
     bottom: 0;
 }
@@ -293,7 +293,7 @@ textarea {
     font-size: 1.5rem;
     text-transform: uppercase;
     font-weight: 800;
-    line-height: 1rem;
+    line-height: 1.5rem;
     margin-top: 1rem;
     text-align: center;
 }
@@ -413,7 +413,8 @@ textarea {
     gap: 1.1rem;
 }
 
-.add-book-form input, .add-book-form textarea {
+.add-book-form input,
+.add-book-form textarea {
     width: 100%;
     padding: 10px 12px;
     border-radius: 5px;
@@ -424,7 +425,8 @@ textarea {
     font: normal 1rem 'Nunito Sans', sans-serif;
 }
 
-.add-book-form input:focus, .add-book-form textarea:focus {
+.add-book-form input:focus,
+.add-book-form textarea:focus {
     outline: none;
 }
 
@@ -457,5 +459,3 @@ textarea {
     opacity: 1;
     scale: 1.005;
 }
-
-

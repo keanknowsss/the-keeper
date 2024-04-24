@@ -65,75 +65,25 @@
 					<h2>NOTES</h2>
 					<hr />
 					<div class="notes">
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt accusantium et
-							quisquam enim dolorum, blanditiis possimus? Deleniti, autem nam!
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt accusantium et
-							quisquam enim dolorum, blanditiis possimus? Deleniti, autem nam!
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt accusantium et
-							quisquam enim dolorum, blanditiis possimus? Deleniti, autem nam!
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt accusantium et
-							quisquam enim dolorum, blanditiis possimus? Deleniti, autem nam!
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis nesciunt accusantium et
-							quisquam enim dolorum, blanditiis possimus? Deleniti, autem nam!
-						</p>
-						<p>
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex perferendis assumenda
-							laudantium, quo corrupti ducimus sint similique dignissimos. Voluptatum, deserunt
-							adipisci fuga, accusamus accusantium laboriosam quo minima commodi eum veritatis
-							perferendis tempore! Eos reprehenderit est accusantium quisquam debitis repellat
-							deserunt hic vitae itaque eveniet, culpa laborum minima, natus blanditiis numquam.
-							Officiis nulla magnam, laborum adipisci doloremque fugit. Eum, recusandae eos nihil
-							doloremque id repellendus, sequi a neque eius illo temporibus odit inventore! Officia
-							non suscipit nihil est accusamus doloribus iusto fugiat! Quo nostrum eligendi ipsa
-							illum ab? Quod quos labore temporibus, rerum rem quas nobis tempore possimus,
-							recusandae in optio.
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia aperiam totam nemo
-							consectetur blanditiis cupiditate autem suscipit soluta vel, dolorem maxime eveniet
-							laborum animi, necessitatibus, aspernatur quam! Voluptas non repellendus quam culpa?
-							Fugit dolores exercitationem vero magnam dicta, officiis eveniet non blanditiis
-							repellat velit numquam laborum, perferendis natus delectus iusto quaerat expedita
-							porro at autem temporibus consequuntur sunt vel adipisci consequatur. Quibusdam
-							tempore vel totam expedita possimus nobis corporis hic asperiores. Eius, voluptatem
-							eum. Delectus aspernatur a assumenda magnam perspiciatis itaque eaque nisi praesentium
-							consequatur voluptatum cupiditate, aperiam enim accusamus totam maxime recusandae
-							nobis placeat ad laudantium provident excepturi vel corrupti, nostrum fuga. Nostrum
-							praesentium accusantium corrupti, rem amet cum eveniet in, ad esse, perferendis alias.
-							Voluptates, molestiae? Eos ratione atque rem nam quo, aliquid repellat cupiditate
-							expedita voluptatum perspiciatis commodi illo ipsam eum doloribus dolores in ipsa
-							impedit earum saepe provident deleniti quod! Dolorum blanditiis incidunt, amet odio
-							nobis provident dolor corrupti ab pariatur ipsam quis accusantium quos distinctio
-							similique nam dolorem laboriosam ducimus esse quae minima veritatis? Atque minima,
-							laboriosam eligendi earum obcaecati cum magni quas, error corrupti delectus autem
-							dolore est debitis ut, veritatis quis deleniti quidem minus deserunt sequi ipsa
-							aperiam hic! Consequuntur possimus deserunt earum?
-						</p>
+						<% notes.forEach(note => { %>
+						 <p><%= note.note %></p>
+						<% }) %>
+						
 					</div>
 				</div>
 				<div class="input-container">
 					<form
-						action="#"
+						action="/add/notes/<%= book.id %>"
 						method="post"
 						class="form-add"
 					>
 						<textarea
-							name=""
-							id=""
+							name="note"
+							id="note"
 							placeholder="Add a new note..."
-							aria-placeholder="Add a new note..."
-							
+							aria-placeholder="Add a new note..."	
 							required
-						>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure in ducimus hic quas totam, assumenda possimus. Pariatur itaque, voluptate dolores at alias doloribus placeat nobis perspiciatis natus quam laboriosam? Accusantium id voluptatem odio nemo et, possimus enim nam magni provident temporibus unde earum accusamus velit facilis placeat cum animi itaque ex debitis a porro? Et, suscipit aut! Architecto ex odio eum reprehenderit, fugit corrupti! Iste non accusantium nam id doloremque perspiciatis, accusamus libero cum commodi in numquam exercitationem tenetur qui. Quod, vel. Fuga dolores animi odio, fugit voluptate nisi! Adipisci ut, ipsam ad dolore velit dolorem doloribus autem nisi obcaecati.</textarea>
+						></textarea>
 						<button><i class="fa-solid fa-plus"></i></button>
 					</form>
 				</div>
