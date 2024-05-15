@@ -32,7 +32,7 @@
 		/>
 		<title><%= book.title %> | The Keeper</title>
 	</head>
-	<body>
+	<body id="book-page">
 		<div class="book-container">
 			<div class="book-section">
 				<button class="edit-btn">
@@ -55,9 +55,7 @@
 						<i class="fa-regular fa-star"></i>
 					</div>
 					<hr />
-					<p class="book-description">
-						<%= book.description %>
-					</p>
+					<p class="book-description"><%= book.description %></p>
 				</div>
 			</div>
 			<div class="note-section">
@@ -66,9 +64,65 @@
 					<hr />
 					<div class="notes">
 						<% notes.forEach(note => { %>
-						 <p><%= note.note %></p>
+						<div
+							onclick="selectNote(event, this)"
+							onblur="closeNote(this)"
+							class="note-block"
+						>
+							<input type="hidden" value="<%= note.id %>" name="note_id" id="note-id">
+							<p id="note-content-<%= note.id %>"><%= note.note %></p>
+							<form
+								action="/edit/note/<%= note.id %>"
+								method="post"
+								id="note-edit-form-<%= note.id %>"
+								class="note-block-form"
+							>
+								<textarea
+									name="note"
+									id="note-edit-text-<%= note.id %>"
+								>
+<%= note.note %></textarea
+								>
+							</form>
+							<div
+								class="note-buttons"
+								id="default-buttons-container-<%= note.id %>"
+							>
+								<button
+									class="note-edit-btn"
+									value="<%= note.id %>"
+									onclick="editNote(event, this)"
+								>
+									<i class="fa-solid fa-pen"></i>
+								</button>
+								<button
+									class="note-delete-btn"
+									onclick="deleteNote(event, this)"
+									value="<%= note.id %>"
+								>
+									<i class="fa-solid fa-trash"></i>
+								</button>
+							</div>
+							<div
+								class="note-buttons"
+								id="edit-buttons-container-<%= note.id %>"
+							>
+								<button
+									class="confirm-btn"
+									value="<%= note.id %>"
+									onclick="confirmEdit(event, this)"
+								>
+									<i class="fa-solid fa-check"></i>
+								</button>
+								<button
+									class="cancel-btn"
+									value="<%= note.id %>"
+									onclick="cancelEdit(event, this)"
+								>
+									<i class="fa-solid fa-ban"></i>
+								</button>
+							</div> 
 						<% }) %>
-						
 					</div>
 				</div>
 				<div class="input-container">
@@ -81,7 +135,7 @@
 							name="note"
 							id="note"
 							placeholder="Add a new note..."
-							aria-placeholder="Add a new note..."	
+							aria-placeholder="Add a new note..."
 							required
 						></textarea>
 						<button><i class="fa-solid fa-plus"></i></button>
@@ -89,5 +143,7 @@
 				</div>
 			</div>
 		</div>
+
+		<script src="/scripts/index.js"></script>
 	</body>
 </html>

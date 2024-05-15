@@ -11,11 +11,13 @@ const port = 8000;
 // middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(session({
-	secret: 'my-secret',  // a secret string used to sign the session ID cookie
-	resave: false,  // don't save session if unmodified
-	saveUninitialized: false  // don't create session until something stored
-  }));
+app.use(
+	session({
+		secret: "my-secret", // a secret string used to sign the session ID cookie
+		resave: false, // don't save session if unmodified
+		saveUninitialized: false, // don't create session until something stored
+	})
+);
 
 // VARIABLES AND DB
 config();
@@ -33,21 +35,21 @@ const db = new pg.Client({
 db.connect();
 
 // routes
-app.post("/add/notes/:book_id", async (req, res) => {
-	const { note } = req.body;
-	const { book_id } = req.params
-	const date = new Date();
-	const dateNow = date.toLocaleDateString();
 
-	try {
-		await db.query("INSERT INTO notes (book_id, note, date_created) VALUES ($1, $2, $3)", [
-			book_id, note, dateNow
-		]);
-	} catch (error) {
-		req.session.error = error;
-	}
+app.get("/", async (req, res) => {
+	const result = await db.query("SELECT * FROM books");
+	const books = result ? result.rows : [];
 
-	return res.redirect("/book/" + book_id);	
+	delete req.session.error; // deletes the session after loading it, so it shows this once
+
+	res.render("menu.ejs", {
+		books,
+		errors: req.session.errors,
+	});
+});
+
+app.get("/add/book", (req, res) => {
+	res.render("add.ejs");
 });
 
 app.get("/book/:id", async (req, res) => {
@@ -56,28 +58,24 @@ app.get("/book/:id", async (req, res) => {
 	delete req.session.error; // deletes the session after loading it, so it shows this once
 
 	try {
-		const book_query = await db.query("SELECT * FROM books WHERE id = $1", [id]);	
+		const book_query = await db.query("SELECT * FROM books WHERE id = $1", [id]);
 		const book = book_query.rows[0];
 
-		const notes_query = await db.query("SELECT * FROM notes WHERE book_id = $1 ORDER BY id DESC", [id]);
+		const notes_query = await db.query("SELECT * FROM notes WHERE book_id = $1 ORDER BY id DESC", [
+			id,
+		]);
 		const notes = notes_query.rows;
 
-		if (book)
-			return res.render("book.ejs", { book, notes, errors: req.session.errors });
+		if (book) return res.render("book.ejs", { book, notes, errors: req.session.errors });
 		else {
 			req.session.error = "Book not found, try adding it first";
 			return res.redirect("/");
 		}
-
 	} catch (error) {
 		req.session.error = error;
 		console.log(error);
 		res.redirect("/");
 	}
-});
-
-app.get("/add/book", (req, res) => {
-	res.render("add.ejs");
 });
 
 app.post("/add/book", async (req, res) => {
@@ -117,16 +115,57 @@ app.post("/add/book", async (req, res) => {
 	}
 });
 
-app.get("/", async (req, res) => {
-	const result = await db.query("SELECT * FROM books");
-	const books = result ? result.rows : [];
+// notes routes
+app.post("/add/notes/:book_id", async (req, res) => {
+	const { note } = req.body;
+	const { book_id } = req.params;
+	const date = new Date();
+	const dateNow = date.toLocaleDateString();
 
-	delete req.session.error; // deletes the session after loading it, so it shows this once
+	try {
+		await db.query("INSERT INTO notes (book_id, note, date_created) VALUES ($1, $2, $3)", [
+			book_id,
+			note,
+			dateNow,
+		]);
+	} catch (error) {
+		req.session.error = error;
+	}
 
-	res.render("menu.ejs", {
-		books,
-		errors: req.session.errors
-	});
+	return res.redirect("/book/" + book_id);
+});
+
+app.post("/edit/note/:note_id", async (req, res) => {
+	const { note_id } = req.params;
+	const { note } = req.body;
+
+	const { rows } = await db.query("SELECT * FROM notes where id = $1", [note_id]);
+	const previous_note = rows[0];
+
+	try {
+		if (previous_note["note"].trim() !== note.trim()) {
+			await db.query("UPDATE notes SET note = $1 WHERE id = $2", [note, note_id]);
+		}
+	} catch (error) {
+		req.session.error = error;
+	}
+
+	return res.redirect("/book/" + previous_note["book_id"]);
+});
+
+app.post("/delete/note/:note_id", async (req, res) => {
+	const { note_id } = req.params;
+
+	const { rows } = await db.query("SELECT book_id FROM notes WHERE id = $1 LIMIT 1", [note_id]);
+	const { book_id } = rows[0];
+
+	try {
+		await db.query("DELETE FROM notes WHERE id = $1", [note_id]);
+	} catch (error) {
+		req.session.error = error;
+	}
+
+	return res.redirect("/book/" + book_id);
 });
 
 app.listen(port, () => {

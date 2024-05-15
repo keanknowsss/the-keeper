@@ -29,6 +29,10 @@ textarea {
     resize: none;
 }
 
+i {
+    pointer-events: none;
+}
+
 .container {
     padding: 5px 10px;
 }
@@ -235,9 +239,9 @@ textarea {
     background-color: rgba(0, 0, 0, 0.7);
     padding-block: 15px 10px;
     width: 100%;
-    box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
-    -webkit-box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
-    -moz-box-shadow: 0px -75px 94px -23px rgba(0,0,0,0.71);
+    box-shadow: 0px -75px 94px -23px rgba(0, 0, 0, 0.71);
+    -webkit-box-shadow: 0px -75px 94px -23px rgba(0, 0, 0, 0.71);
+    -moz-box-shadow: 0px -75px 94px -23px rgba(0, 0, 0, 0.71);
     color: var(--primary);
     bottom: 0;
 }
@@ -337,19 +341,41 @@ textarea {
     gap: 25px;
 }
 
-.notes p {
+.note-block {
     letter-spacing: 0.5pt;
     line-height: 2.2ch;
     text-align: justify;
-    padding: 5px 50px 5px 20px;
+    padding: 5px 0px 5px 20px;
     transition: 0.2s ease-in-out all;
+    cursor: pointer;
+    position: relative;
 }
 
-.notes p:hover {
+.note-block p {
+    padding-right: 50px;
+}
+
+.note-block:hover {
     border: 1px solid black;
     box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+}
+
+.note-block-active {
+    border: 1px solid black;
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
+    transition: ease-in-out 1ms all;
+    min-height: 115px;
+}
+
+.note-block-active:hover {
+    border: 1px solid black;
+    box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.75);
 }
 
 .stars-book-section {
@@ -459,3 +485,98 @@ textarea {
     opacity: 1;
     scale: 1.005;
 }
+
+.note-buttons {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    top: 12px;
+    right: -23px;
+    z-index: 5;
+    gap: 3px;
+    visibility: hidden;
+}
+
+.note-buttons #default {
+    display:block;
+}
+
+.note-buttons #edit-buttons-container {
+    display: none;
+}
+
+.note-buttons button {
+    padding: 10px;
+    color: black;
+    border: solid rgba(0, 0, 0, 0.178) 1px;
+    border-radius: 50%;
+    pointer-events: all;
+    cursor: pointer;
+    box-shadow: 5px 6px 15px -1px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 5px 6px 15px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 5px 6px 15px -1px rgba(0, 0, 0, 0.75);
+    transition: background-color 0.2s ease-in;
+}
+
+.note-buttons .note-edit-btn {
+    background-color: rgb(218, 242, 65);
+}
+.note-buttons .note-edit-btn:hover {
+    background-color: yellow;
+}
+
+.note-buttons .note-delete-btn {
+    background-color: rgb(232, 53, 53);
+}
+.note-buttons .note-delete-btn:hover {
+    background-color: red;
+}
+
+.note-buttons .confirm-btn {
+    background-color: rgb(143, 212, 40);
+}
+.note-buttons .confirm-btn:hover {
+    background-color: greenyellow;
+}
+
+.note-buttons .cancel-btn {
+    background-color: rgb(209, 0, 0);
+}
+.note-buttons .cancel-btn:hover {
+    background-color: red;
+}
+
+.visible {
+    visibility: visible;
+}
+
+/* .note-block-form {
+    letter-spacing: 0.5pt;
+    line-height: 2.2ch;
+    text-align: justify;
+    position: relative;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.75);
+    padding: 0;
+} */
+.note-block-form {
+    width: 100%;
+    background-color: none;
+    display: none;
+}
+
+.note-block-form textarea {
+    border: none;
+    width: 100%;
+    outline: none;
+    font-family: 'Nunito Sans', sans-serif;
+    letter-spacing: 0.5pt;
+    line-height: 2.2ch;
+    text-align: justify;
+    font-size: 1rem;
+    background: none;
+    padding-right: 50px;
+}
+
